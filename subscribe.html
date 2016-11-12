@@ -1,5 +1,17 @@
 <!DOCTYPE html>
 <html>
+    <script>
+    // get the client
+var mysql = require('mysql2');
+
+// create the connection to database
+var connection = mysql.createConnection({host:'us-cdbr-iron-east-04.cleardb.net', user: 'bcba31cf84da31', database: 'heroku_fed2d83060b70ed'});
+
+// simple query
+connection.query('SELECT * FROM `maintable`, function (err, results) {
+  console.log(results);
+});
+</script>
 <head>
 <title></title>
 </head>
@@ -8,7 +20,19 @@
 Subscribe to the Please Help Me App!
 <br>
 <br>
-Login - Subscribe
+First Name
+<br>
+Last Name
+<br>
+Phone Number
+<br>
+E-mail
+<br>
+Are you:
+<br> Looking for tutors
+<br> Wanting to be a tutor
+<br> Both!
+
 <br>
 <br>
 </body>
