@@ -2,6 +2,8 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+        <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
         <script type="text/javascript" src="indexScript.js"></script>
         <title>Pleae Help Me</title>
     </head>
@@ -10,9 +12,13 @@
         <div>
             <h2>Please Help Me connects students and teachers</h2>
         </div>
-        <button type="button" onclick="window.location.href='/login.html'">Login</button> 
-        <button type="button" onclick="window.location.href='/subscribe.html'">Subscribe</button> 
-        <a href="subscribe.html" >Subscribe</a> 
-        <div></div>
+        <button id="loginButton" type="button">Login</button> 
+        <button type="button" onclick="window.location.href='subscribe.html'">Subscribe</button> 
+        <div id="loginForm" style="display:none;">
+            <form>
+                First name: <input type="text" name="firstname"><br>
+                Last name: <input type="text" name="lastname">
+            </form>
+        </div>
     </body>
 </html>
