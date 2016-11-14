@@ -8,8 +8,9 @@ var mysql = require('mysql2');
 var connection = mysql.createConnection({host:'us-cdbr-iron-east-04.cleardb.net', user: 'bcba31cf84da31', database: 'heroku_fed2d83060b70ed'});
 
 // simple query
-connection.query('SELECT * FROM `maintable`, function (err, results) {
-  console.log(results);
+connection.query('SELECT * FROM `maintable`', function (results, fields) {
+  document.write(results); 
+  document.write(fields); 
 });
 </script>
 <head>
@@ -17,24 +18,7 @@ connection.query('SELECT * FROM `maintable`, function (err, results) {
 </head>
 
 <body>
-Subscribe to the Please Help Me App!
-<br>
-<br>
-First Name
-<br>
-Last Name
-<br>
-Phone Number
-<br>
-E-mail
-<br>
-Are you:
-<br> Looking for tutors
-<br> Wanting to be a tutor
-<br> Both!
 
-<br>
-<br>
 </body>
 
 </html>
