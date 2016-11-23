@@ -32,6 +32,7 @@ class FGMembersite
     var $tablename;
     var $connection;
     var $rand_key;
+    var $usertype;
     
     var $error_message;
     
@@ -141,7 +142,8 @@ class FGMembersite
             return false;
         }
         
-        $_SESSION[$this->GetLoginSessionVar()] = $username;
+       $_SESSION[$this->GetLoginSessionVar()] = $username;
+       
         
         return true;
     }
@@ -163,7 +165,10 @@ class FGMembersite
     {
         return isset($_SESSION['name_of_user'])?$_SESSION['name_of_user']:'';
     }
-    
+    function UserType()
+    {
+        return isset($_SESSION['usertype'])?$_SESSION['usertype']:'';
+    }
     function UserEmail()
     {
         return isset($_SESSION['email_of_user'])?$_SESSION['email_of_user']:'';
@@ -358,7 +363,7 @@ class FGMembersite
         }          
         $username = $this->SanitizeForSQL($username);
         $pwdmd5 = md5($password);
-        $qry = "Select name, email from $this->tablename where username='$username' and password='$pwdmd5' and confirmcode='y'";
+        $qry = "Select name, email, userType from $this->tablename where username='$username' and password='$pwdmd5' and confirmcode='y'";
         
         $result = mysql_query($qry,$this->connection);
         
@@ -373,11 +378,11 @@ class FGMembersite
         
         $_SESSION['name_of_user']  = $row['name'];
         $_SESSION['email_of_user'] = $row['email'];
-        
+        $_SESSION['usertype'] = $row['userType'];
         return true;
     }
     
-    function UpdateDBRecForConfirmation(&$user_rec)
+        function UpdateDBRecForConfirmation(&$user_rec)
     {
         if(!$this->DBLogin())
         {
