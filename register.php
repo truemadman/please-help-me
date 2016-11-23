@@ -50,6 +50,17 @@ if(isset($_POST['submitted']))
     <span id='register_username_errorloc' class='error'></span>
 </div>
 <div class='container' style='height:80px;'>
+    <label for='usertype' >Student, Tutor or Student and Tutor?*:</label><br/>
+ 
+    <select name='usertype' id='usertype'>
+  <option value="s">Student</option>
+  <option value="t">Tutor</option>
+  <option value="st">Student and Tutor</option>
+</select>
+    
+    <span id='register_usertype_errorloc' class='error'></span>
+</div>
+<div class='container' style='height:80px;'>
     <label for='password' >Password*:</label><br/>
     <div class='pwdwidgetdiv' id='thepwddiv' ></div>
     <noscript>
@@ -82,6 +93,8 @@ Uses the excellent form validation script from JavaScript-coder.com-->
     frmvalidator.addValidation("email","email","Please provide a valid email address");
 
     frmvalidator.addValidation("username","req","Please provide a username");
+    
+     frmvalidator.addValidation("useryype","req","Please answer if you are a Student, Tutor or both");
     
     frmvalidator.addValidation("password","req","Please provide a password");
 

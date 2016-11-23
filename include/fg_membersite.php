@@ -793,7 +793,8 @@ class FGMembersite
                 email,
                 username,
                 password,
-                confirmcode
+                confirmcode,
+                userType
                 )
                 values
                 (
@@ -801,7 +802,8 @@ class FGMembersite
                 "' . $this->SanitizeForSQL($formvars['email']) . '",
                 "' . $this->SanitizeForSQL($formvars['username']) . '",
                 "' . md5($formvars['password']) . '",
-                "' . $confirmcode . '"
+                "' . $confirmcode . '",
+                "' . $_POST['usertype']. '"
                 )';      
         if(!mysql_query( $insert_query ,$this->connection))
         {
