@@ -50,7 +50,7 @@ if(isset($_POST['submitted']))
     <span id='register_username_errorloc' class='error'></span>
 </div>
 <div class='container' style='height:80px;'>
-    <label for='usertype' >Student, Tutor or Student and Tutor?*:</label><br/>
+    <label for='usertype' >Are you a Student, Tutor or Student and Tutor?*:</label><br/>
  
     <select name='usertype' id='usertype'>
   <option value="s">Student</option>
