@@ -22,6 +22,9 @@ This page can be accessed only by Students!
 Logged in as: <?= $fgmembersite->UserFullName() ?>
 </p>
 <p>
+<a href='list_tutors.php'>Find a tutor and subject</a>
+</p>
+<p>
 <a href='login-home.php'>Home</a>
 </p>
 </div>
