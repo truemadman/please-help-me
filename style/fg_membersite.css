@@ -11,7 +11,7 @@ You can customize all the aspects of the form in this style sheet
 -moz-border-radius: 10px;
 -webkit-border-radius: 10px;
 -khtml-border-radius: 10px;
-border-radius: 10px;   
+border-radius: 10px;  
 }
 
 #fg_membersite legend, #fg_membersite h2
@@ -163,4 +163,10 @@ padding-bottom:10px;
    font-size: 1.5em;
    font-weight:bold;
    color:#333;
+}
+
+#fg_membersite_content t01
+{
+    width: 100%;
+    background-color: #f1f1c1;
 }
