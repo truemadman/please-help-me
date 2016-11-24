@@ -413,6 +413,28 @@ class FGMembersite
         return true;
     }
     
+    function ListTutors()
+    {
+        if(!$this->DBLogin())
+        {
+            $this->HandleError("Database login failed!");
+            return false;
+        }          
+        //$qry = "Select name, email, userType from $this->tablename where username='$username' and password='$pwdmd5' and confirmcode='y'";
+        
+        $query = "SELECT maintable.name, maintable.email, courses.coursename, courses.hourrate FROM maintable INNER JOIN courses ON maintable.id_user=courses.ClientID;"; //You don't need a ; like you do in SQL
+        $result = mysql_query($query);
+
+        echo "<table>"; // start a table tag in the HTML
+            echo "<tr><td><b>Tutor Name</b></td><td><b>Tutor Email</b></td><td><b>What does he teach?</b></td><td><b>Tutors Hourly Rate</b></td></tr>";
+        while($row = mysql_fetch_array($result)){   //Creates a loop to loop through results
+        echo "<tr><td>" . $row['name'] . "</td><td>" . "<a href=mailto:" . $row['email'] . ">" . $row['email'] . "</a></td><td>" . $row['coursename'] . "</td><td>" . $row['hourrate'] . "</td></tr>";  //$row['index'] the index here is a field name
+        }
+
+        echo "</table>"; //Close the table in HTML
+
+    }
+    
         function UpdateDBRecForConfirmation(&$user_rec)
     {
         if(!$this->DBLogin())

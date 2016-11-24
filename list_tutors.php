@@ -11,22 +11,39 @@ if(!$fgmembersite->CheckLogin())
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 <head>
       <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
-      <title>Student Page</title>
+      <title>Tutor Listing</title>
       <link rel="STYLESHEET" type="text/css" href="style/fg_membersite.css">
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+</style>
 </head>
+
+
 <body>
 <div id='fg_membersite_content'>
-<h2>This is the Student Page!</h2>
-This page can be accessed only by Students!
+<h2>Tutor Listing!</h2>
 <p>
-Logged in as: <?= $fgmembersite->UserFullName() ?>
+<?PHP
+require_once("./include/fg_membersite.php");
+!$fgmembersite->ListTutors();
+?>
+
+
+  </div>
 </p>
 <p>
-<a href='list_tutors.php'>Find a tutor and subject</a>
+<a href='student.php'>Go back to your Student Profile Page</a>
 </p>
 <p>
 <a href='login-home.php'>Home</a>
 </p>
-</div>
+
 </body>
 </html>
