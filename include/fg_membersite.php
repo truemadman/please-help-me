@@ -33,6 +33,7 @@ class FGMembersite
     var $connection;
     var $rand_key;
     var $usertype;
+    var $userid;
     
     var $error_message;
     
@@ -160,7 +161,10 @@ class FGMembersite
          }
          return true;
     }
-    
+    function UserID()
+    {
+        return isset($_SESSION['userid'])?$_SESSION['userid']:'';
+    }
     function UserFullName()
     {
         return isset($_SESSION['name_of_user'])?$_SESSION['name_of_user']:'';
@@ -173,7 +177,10 @@ class FGMembersite
     {
         return isset($_SESSION['email_of_user'])?$_SESSION['email_of_user']:'';
     }
-    
+    function UserName()
+    {
+        return isset($_SESSION['username'])?$_SESSION['username']:'';
+    }
     function LogOut()
     {
         session_start();
@@ -286,7 +293,29 @@ class FGMembersite
         }
         return true;
     }
-    
+       function RegisterCourse()
+    {
+        if(!isset($_POST['submitted']))
+        {
+           return false;
+        }
+        
+        $formvars = array();
+        
+/*        if(!$this->ValidateCourseSubmission())
+        {
+            echo false;
+            return false;
+        }
+*/      
+        $this->CollectCourseSubmission($formvars);
+        
+        if(!$this->SaveCourseToDB($formvars))
+        {
+            return false;
+        }
+    }    
+       
     //-------Public Helper functions -------------
     function GetSelfScript()
     {
@@ -363,7 +392,7 @@ class FGMembersite
         }          
         $username = $this->SanitizeForSQL($username);
         $pwdmd5 = md5($password);
-        $qry = "Select name, email, userType from $this->tablename where username='$username' and password='$pwdmd5' and confirmcode='y'";
+        $qry = "Select id_user, name, email, username, userType from $this->tablename where username='$username' and password='$pwdmd5' and confirmcode='y'";
         
         $result = mysql_query($qry,$this->connection);
         
@@ -375,10 +404,12 @@ class FGMembersite
         
         $row = mysql_fetch_assoc($result);
         
-        
-        $_SESSION['name_of_user']  = $row['name'];
+        $_SESSION['userid'] = $row['id_user'];        
+        $_SESSION['name_of_user'] = $row['name'];
         $_SESSION['email_of_user'] = $row['email'];
         $_SESSION['usertype'] = $row['userType'];
+        $_SESSION['username'] = $row['username'];
+
         return true;
     }
     
@@ -622,7 +653,11 @@ class FGMembersite
         $formvars['username'] = $this->Sanitize($_POST['username']);
         $formvars['password'] = $this->Sanitize($_POST['password']);
     }
-    
+       function CollectCourseSubmission(&$formvars)
+    {
+        $formvars['coursename'] = $this->Sanitize($_POST['coursename']);
+        $formvars['hourrate'] = $this->Sanitize($_POST['hourrate']);
+    }
     function SendUserConfirmationEmail(&$formvars)
     {
         $mailer = new PHPMailer();
@@ -720,6 +755,31 @@ class FGMembersite
         return true;
     }
     
+    function SaveCourseToDB(&$formvars)
+    {
+        if(!$this->DBLogin())
+        {
+            $this->HandleError("Database login failed!");
+            echo false;
+            return false;
+        }
+       
+/*        if(!$this->IsCourseUnique($formvars,'coursename'))
+        {
+            $this->HandleError("This Course is already registered");
+            return false;
+        }
+*/            
+        if(!$this->InsertCourse($formvars))
+        {
+            $this->HandleError("Inserting to Database failed!");
+            echo false;
+            return false;
+        }
+        echo true;
+        return true;
+    }
+    
     function IsFieldUnique($formvars,$fieldname)
     {
         $field_val = $this->SanitizeForSQL($formvars[$fieldname]);
@@ -731,7 +791,17 @@ class FGMembersite
         }
         return true;
     }
-    
+       function IsCourseUnique($formvars,$fieldname)
+    {
+        $field_val = $this->SanitizeForSQL($formvars[$fieldname]);
+        $qry = "select username from courses where $fieldname='".$field_val."'";
+        $result = mysql_query($qry,$this->connection);   
+        if($result && mysql_num_rows($result) > 0)
+        {
+            return false;
+        }
+        return true;
+    }
     function DBLogin()
     {
 
@@ -817,6 +887,52 @@ class FGMembersite
         }        
         return true;
     }
+     function InsertCourse(&$formvars)
+    {
+        $insert_query = 'insert into courses(
+                ClientID,
+                coursename,
+                hourrate
+                )
+                values
+                (
+                "' . $this->UserID() . '",
+                "' . $this->SanitizeForSQL($formvars['coursename']) . '",
+                "' . $this->SanitizeForSQL($formvars['hourrate']) . '"
+                )';      
+        if(!mysql_query( $insert_query ,$this->connection))
+        {
+            $this->HandleDBError("Error inserting data to the table\nquery:$insert_query");
+            echo false;
+            return false;
+        }        
+        return true;
+    }
+    
+     function FetchCourseFromDB($userid)
+    {
+        if(!$this->DBLogin())
+        {
+            $this->HandleError("Database login failed!");
+            return false;
+        }
+        $qry = "SELECT coursename, hourrate FROM courses WHERE ClientID =".$userid.";";
+        $result=mysql_query($qry,$this->connection);
+        echo $result;
+/*        if ($result->num_rows() > 0) 
+        {
+            echo "<table><tr><th>Course Name</th><th>Hour Rate</th></tr>";
+            // output data of each row
+            while($row = $result->fetch_assoc()) {
+                echo "<tr><td></td><td>".$row["coursename"]." ".$row["hourrate"]."</td></tr>";
+        }
+            echo "</table>";
+        } else {
+            echo "0 results";
+        }*/  
+    }
+  
+    
     function MakeConfirmationMd5($email)
     {
         $randno1 = rand();
@@ -869,4 +985,6 @@ class FGMembersite
         return $str;
     }    
 }
+
+
 ?>
