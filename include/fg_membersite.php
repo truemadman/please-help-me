@@ -314,7 +314,23 @@ class FGMembersite
         {
             return false;
         }
-    }    
+    } 
+           function DeleteCourse()
+    {
+        if(!isset($_POST['deletesubmitted']))
+        {
+           return false;
+        }
+        
+        $formvars = array();
+        
+        $this->CollectDeleteCourseSubmission($formvars); //to be written
+        
+        if(!$this->DeleteCourseFromDB($formvars))
+        {
+            return false;
+        }
+    } 
        
     //-------Public Helper functions -------------
     function GetSelfScript()
@@ -680,6 +696,10 @@ class FGMembersite
         $formvars['coursename'] = $this->Sanitize($_POST['coursename']);
         $formvars['hourrate'] = $this->Sanitize($_POST['hourrate']);
     }
+       function CollectDeleteCourseSubmission(&$formvars)
+    {
+        $formvars['coursename'] = $this->Sanitize($_POST['coursename']);
+    }
     function SendUserConfirmationEmail(&$formvars)
     {
         $mailer = new PHPMailer();
@@ -782,7 +802,6 @@ class FGMembersite
         if(!$this->DBLogin())
         {
             $this->HandleError("Database login failed!");
-            echo false;
             return false;
         }
        
@@ -795,12 +814,27 @@ class FGMembersite
         if(!$this->InsertCourse($formvars))
         {
             $this->HandleError("Inserting to Database failed!");
-            echo false;
             return false;
         }
-        echo true;
         return true;
     }
+    
+    function DeleteCourseFromDB(&$formvars)
+    {
+        if(!$this->DBLogin())
+        {
+            $this->HandleError("Database login failed!");
+            return false;
+        }
+              
+        if(!$this->DeleteCourseStatement($formvars))
+        {
+            $this->HandleError("Inserting to Database failed!");
+            return false;
+        }
+        return true;
+    }
+    
     
     function IsFieldUnique($formvars,$fieldname)
     {
@@ -925,7 +959,17 @@ class FGMembersite
         if(!mysql_query( $insert_query ,$this->connection))
         {
             $this->HandleDBError("Error inserting data to the table\nquery:$insert_query");
-            echo false;
+            return false;
+        }        
+        return true;
+    }
+    
+        function DeleteCourseStatement(&$formvars)
+    {
+        $insert_query = 'DELETE FROM courses WHERE ClientID ="'. $this->UserID() . '" AND coursename="'  . $this->SanitizeForSQL($formvars['coursename']) . '";';      
+        if(!mysql_query( $insert_query ,$this->connection))
+        {
+            $this->HandleDBError("Error deleting data to the table\nquery:$insert_query");
             return false;
         }        
         return true;
@@ -942,9 +986,9 @@ class FGMembersite
         $result = mysql_query($query);
 
         echo "<table>"; // start a table tag in the HTML
-            echo "<tr><td><b>Course Name</b></td><td><b>Hour Rate</b></td></tr>";
+            echo "<tr><td></td><td><b>Course Name</b></td><td><b>Hour Rate</b></td></tr>";
         while($row = mysql_fetch_array($result)){   //Creates a loop to loop through results
-        echo "<tr><td>" . $row['coursename'] . "</td><td>" . $row['hourrate'] . "</td></tr>";  //$row['index'] the index here is a field name
+        echo "<tr><td><input type=\"radio\" name=\"coursename\" value=". $row['coursename'] ."></td><td>" . $row['coursename'] . "</td><td>" . $row['hourrate'] . "</td></tr>";  //$row['index'] the index here is a field name
         }
 
         echo "</table>"; //Close the table in HTML

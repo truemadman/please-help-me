@@ -13,6 +13,13 @@ if(isset($_POST['submitted']))
         $fgmembersite->RedirectToURL("course-registered.html");
    }
 }
+if(isset($_POST['deletesubmitted']))
+{
+   if($fgmembersite->DeleteCourse())
+   {
+        $fgmembersite->RedirectToURL("course-deleted.html");
+   }
+}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
@@ -20,7 +27,16 @@ if(isset($_POST['submitted']))
       <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
       <title>Tutor Page</title>
       <link rel="STYLESHEET" type="text/css" href="style/fg_membersite.css">
-     
+     <style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+</style>
 </head>
 <body>
 <div id='fg_membersite_content'>
@@ -56,14 +72,24 @@ Your UserName is: <?= $fgmembersite->Username() ?></br>
         </fieldset>
     </form>
 </div>
-<div>Check your Courses</div>
-<div id='fg_membersite_content'>
-    <p>
-        <?PHP
-        require_once("./include/fg_membersite.php");
-        !$fgmembersite->FetchCourseFromDB($fgmembersite->UserID());
-        ?>
-    </p>
+<div id='fg_membersite'>
+    <form id='deletecourse' action='<?php echo $fgmembersite->GetSelfScript(); ?>' method='post' accept-charset='UTF-8'>
+        <fieldset>
+        <legend>Check your Courses</legend>
+
+        <input type='hidden' name='deletesubmitted' id='deletesubmitted' value='1'/>
+        <input type='hidden' name='userid' id='userid' value='<?= $fgmembersite->UserID() ?>'/>
+        <p>
+            <?PHP
+            require_once("./include/fg_membersite.php");
+            !$fgmembersite->FetchCourseFromDB($fgmembersite->UserID());
+            ?>
+        </p>
+        <div class='container'>
+            <input type='submit' name='Submit' value='Delete Selected' />
+        </div>
+        </fieldset>
+    </form>
 </div>
 
 <p>
