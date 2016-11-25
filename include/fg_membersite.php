@@ -985,17 +985,16 @@ class FGMembersite
         $query = "SELECT courses.coursename, courses.hourrate FROM  courses where courses.ClientID=" . $userid . ";"; //You don't need a ; like you do in SQL
         $result = mysql_query($query);
 
-        echo "<table>"; // start a table tag in the HTML
+        echo "<table id='fg_membersite_table'>"; // start a table tag in the HTML
             echo "<tr><td></td><td><b>Course Name</b></td><td><b>Hour Rate</b></td></tr>";
         while($row = mysql_fetch_array($result)){   //Creates a loop to loop through results
-        echo "<tr><td><input type=\"radio\" name=\"coursename\" value=". $row['coursename'] ."></td><td>" . $row['coursename'] . "</td><td>" . $row['hourrate'] . "</td></tr>";  //$row['index'] the index here is a field name
+        echo "<tr><td><input type=\"radio\" name=\"coursename\" value=". $row['coursename'] ."></td><td>" . $row['coursename'] . "</td><td>" . $row['hourrate'] . "$ </td></tr>";  //$row['index'] the index here is a field name
         }
 
         echo "</table>"; //Close the table in HTML
 
     }
   
-    
     function MakeConfirmationMd5($email)
     {
         $randno1 = rand();

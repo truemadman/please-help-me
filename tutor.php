@@ -24,79 +24,100 @@ if(isset($_POST['deletesubmitted']))
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 <head>
-      <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
-      <title>Tutor Page</title>
-      <link rel="STYLESHEET" type="text/css" href="style/fg_membersite.css">
-     <style>
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-}
-th, td {
-    padding: 5px;
-    text-align: left;
-}
-</style>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+        <title>Tutor Page</title>
+        <link rel="STYLESHEET" type="text/css" href="style/fg_membersite.css">
+        <link rel="stylesheet" href="style/base.css">  
+        <link rel="stylesheet" href="style/main.css">
+        <link rel="stylesheet" href="style/vendor.css">  
+        <script src="scripts/modernizr.js"></script>
+        <script>
+            function changeAlert() {
+                alert("Dude, gimme a break! Do you realize how many methods I have to write to let you change your course? Just delete it and add a new one");
+            }
+        </script>
 </head>
-<body>
-<div id='fg_membersite_content'>
-<h2>This is the Tutor Page!</h2>
-This page can be accessed only by Tutors!
-<p>
-Logged in as: <?= $fgmembersite->UserFullName() ?></br>
-Your UserID is: <?= $fgmembersite->UserID() ?></br>
-Your UserName is: <?= $fgmembersite->Username() ?></br>
-</p>
-<div id='fg_membersite'>
-    <form id='insertcourse' action='<?php echo $fgmembersite->GetSelfScript(); ?>' method='post' accept-charset='UTF-8'>
-        <fieldset>
-        <legend>Insert Course</legend>
+<body id="top">
 
-        <input type='hidden' name='submitted' id='submitted' value='1'/>
-        <input type='hidden' name='userid' id='userid' value='<?= $fgmembersite->UserID() ?>'/>
-        <div class='short_explanation'>* required fields</div>
+	<!-- header 
+   ================================================== -->
+     <header>
 
-        <div><span class='error'><?php echo $fgmembersite->GetErrorMessage(); ?></span></div>
-        <div class='container'>
-            <label for='name' >Course Name*: </label><br/>
-            <input type='text' name='coursename' id='coursename' value='<?php echo $fgmembersite->SafeDisplay('Course Name') ?>' maxlength="50" /><br/>
-            <span id='register_name_errorloc' class='error'></span>
-        </div>
-        <div class='container'>
-            <label for='hourrate' >Hour Rate*:</label><br/>
-            <input type='number' name='hourrate' id='hourrate' value='<?php echo $fgmembersite->SafeDisplay('Hour Rate') ?>' maxlength="10" /><br/>
-        </div>
-        <div class='container'>
-            <input type='submit' name='Submit' value='Submit' />
-        </div>
-        </fieldset>
-    </form>
-</div>
-<div id='fg_membersite'>
-    <form id='deletecourse' action='<?php echo $fgmembersite->GetSelfScript(); ?>' method='post' accept-charset='UTF-8'>
-        <fieldset>
-        <legend>Check your Courses</legend>
+   	<div class="row" style="vertical-align: text-top;">
+   	    <h5>Tutor Dashboard</h5>
+	   	<nav id="main-nav-wrap">
+				<ul class="main-navigation">
+					
+					<li class="highlight with-sep">Logged in as: <?= $fgmembersite->UserFullName() ?></li>
+					<li><a class="smoothscroll"  href="login-home.php" title="">Home</a></li>
+					<li><a class="smoothscroll"  href="reset-pwd-req.php" title="">Reset Password</a></li>
+					<li class="highlight with-sep"><a href="logout.php" title="">Log Out</a></li>					
+				</ul>
+			</nav>
+			<a class="menu-toggle" href="#"><span>Menu</span></a>
+   		
+   </div>
+   	
+   </header> <!-- /header -->
+   
+	<!-- intro section
+   ================================================== -->
 
-        <input type='hidden' name='deletesubmitted' id='deletesubmitted' value='1'/>
-        <input type='hidden' name='userid' id='userid' value='<?= $fgmembersite->UserID() ?>'/>
-        <p>
-            <?PHP
-            require_once("./include/fg_membersite.php");
-            !$fgmembersite->FetchCourseFromDB($fgmembersite->UserID());
-            ?>
-        </p>
-        <div class='container'>
-            <input type='submit' name='Submit' value='Delete Selected' />
-        </div>
-        </fieldset>
-    </form>
-</div>
+        <section id="process">	
+            <div class="row">
+            </div>
+            <div class="row">
+                <div id='fg_membersite'>
+                    <form id='insertcourse' action='<?php echo $fgmembersite->GetSelfScript(); ?>' method='post' accept-charset='UTF-8'>
+                        <fieldset>
+                            <legend>Insert Course</legend>
 
-<p>
-<a href='login-home.php'>Home</a>
-<a href='reset-pwd-req.php'>Reset Password</a>
-<a href='logout.php'>Log Out</a>
-</p>
-</div>
+                            <input type='hidden' name='submitted' id='submitted' value='1'/>
+                            <input type='hidden' name='userid' id='userid' value='<?= $fgmembersite->UserID() ?>'/>
+                            <div class='short_explanation'>* required fields</div>
+
+                            <div><span class='error'><?php echo $fgmembersite->GetErrorMessage(); ?></span></div>
+                            <div class='container'>
+                                <label for='name' >Course Name*: </label><br/>
+                                <input type='text' name='coursename' id='coursename' value='<?php echo $fgmembersite->SafeDisplay('Course Name') ?>' maxlength="50" /><br/>
+                                <span id='register_name_errorloc' class='error'></span>
+                            </div>
+                            <div class='container'>
+                                <label for='hourrate' >Hour Rate*:</label><br/>
+                                <input type='number' name='hourrate' id='hourrate' value='<?php echo $fgmembersite->SafeDisplay('Hour Rate') ?>' maxlength="10" /><br/>
+                            </div>
+                            <div class='container'>
+                                <input type='submit' name='Submit' value='Submit' />
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+             <div class="row">
+                <div id='fg_membersite'>
+                <form id='deletecourse' action='<?php echo $fgmembersite->GetSelfScript(); ?>' method='post' accept-charset='UTF-8'>
+                    <fieldset>
+                        <legend>Check your Courses</legend>
+    
+                        <input type='hidden' name='deletesubmitted' id='deletesubmitted' value='1'/>
+                        <input type='hidden' name='userid' id='userid' value='<?= $fgmembersite->UserID() ?>'/>
+                        <p>
+                            <?PHP
+                                require_once("./include/fg_membersite.php");
+                                !$fgmembersite->FetchCourseFromDB($fgmembersite->UserID());
+                            ?>
+                        </p>
+                        <div class='container'>
+                            <input type='submit' name='Submit' value='Delete Selected' />
+                            <button onclick="changeAlert()">Change Selected</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </section>
+    <script src="scripts/jquery-1.11.3.min.js"></script>
+    <script src="scripts/jquery-migrate-1.2.1.min.js"></script>
+    <script src="scripts/plugins.js"></script>
+    <script src="scripts/main.js"></script>
 </body>
 </html>
