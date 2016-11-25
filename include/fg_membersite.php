@@ -938,20 +938,17 @@ class FGMembersite
             $this->HandleError("Database login failed!");
             return false;
         }
-        $qry = "SELECT coursename, hourrate FROM courses WHERE ClientID =".$userid.";";
-        $result=mysql_query($qry,$this->connection);
-        echo $result;
-/*        if ($result->num_rows() > 0) 
-        {
-            echo "<table><tr><th>Course Name</th><th>Hour Rate</th></tr>";
-            // output data of each row
-            while($row = $result->fetch_assoc()) {
-                echo "<tr><td></td><td>".$row["coursename"]." ".$row["hourrate"]."</td></tr>";
+        $query = "SELECT courses.coursename, courses.hourrate FROM  courses where courses.ClientID=" . $userid . ";"; //You don't need a ; like you do in SQL
+        $result = mysql_query($query);
+
+        echo "<table>"; // start a table tag in the HTML
+            echo "<tr><td><b>Course Name</b></td><td><b>Hour Rate</b></td></tr>";
+        while($row = mysql_fetch_array($result)){   //Creates a loop to loop through results
+        echo "<tr><td>" . $row['coursename'] . "</td><td>" . $row['hourrate'] . "</td></tr>";  //$row['index'] the index here is a field name
         }
-            echo "</table>";
-        } else {
-            echo "0 results";
-        }*/  
+
+        echo "</table>"; //Close the table in HTML
+
     }
   
     

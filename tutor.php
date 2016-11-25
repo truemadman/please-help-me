@@ -27,7 +27,9 @@ if(isset($_POST['submitted']))
 <h2>This is the Tutor Page!</h2>
 This page can be accessed only by Tutors!
 <p>
-Logged in as: <?= $fgmembersite->UserFullName() ?>
+Logged in as: <?= $fgmembersite->UserFullName() ?></br>
+Your UserID is: <?= $fgmembersite->UserID() ?></br>
+Your UserName is: <?= $fgmembersite->Username() ?></br>
 </p>
 <div id='fg_membersite'>
     <form id='insertcourse' action='<?php echo $fgmembersite->GetSelfScript(); ?>' method='post' accept-charset='UTF-8'>
@@ -35,7 +37,7 @@ Logged in as: <?= $fgmembersite->UserFullName() ?>
         <legend>Insert Course</legend>
 
         <input type='hidden' name='submitted' id='submitted' value='1'/>
-
+        <input type='hidden' name='userid' id='userid' value='<?= $fgmembersite->UserID() ?>'/>
         <div class='short_explanation'>* required fields</div>
 
         <div><span class='error'><?php echo $fgmembersite->GetErrorMessage(); ?></span></div>
@@ -55,6 +57,15 @@ Logged in as: <?= $fgmembersite->UserFullName() ?>
     </form>
 </div>
 <div>Check your Courses</div>
+<div id='fg_membersite_content'>
+    <p>
+        <?PHP
+        require_once("./include/fg_membersite.php");
+        !$fgmembersite->FetchCourseFromDB($fgmembersite->UserID());
+        ?>
+    </p>
+</div>
+
 <p>
 <a href='login-home.php'>Home</a>
 <a href='reset-pwd-req.php'>Reset Password</a>
