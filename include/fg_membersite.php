@@ -181,6 +181,10 @@ class FGMembersite
     {
         return isset($_SESSION['username'])?$_SESSION['username']:'';
     }
+     function CourseID()
+    {
+        return isset($_SESSION['courseid'])?$_SESSION['courseid']:'';
+    }
     function LogOut()
     {
         session_start();
@@ -721,7 +725,7 @@ class FGMembersite
     }
        function CollectDeleteCourseSubmission(&$formvars)
     {
-        $formvars['coursename'] = $this->Sanitize($_POST['coursename']);
+        $formvars['uniqueid'] = $this->Sanitize($_POST['uniqueid']);
     }
     function SendUserConfirmationEmail(&$formvars)
     {
@@ -989,7 +993,7 @@ class FGMembersite
     
         function DeleteCourseStatement(&$formvars)
     {
-        $insert_query = 'DELETE FROM courses WHERE ClientID ="'. $this->UserID() . '" AND coursename="'  . $this->SanitizeForSQL($formvars['coursename']) . '";';      
+        $insert_query = 'DELETE FROM courses WHERE uniqueid ="' . $this->SanitizeForSQL($formvars['uniqueid']) . '";';      
         if(!mysql_query( $insert_query ,$this->connection))
         {
             $this->HandleDBError("Error deleting data to the table\nquery:$insert_query");
@@ -1005,13 +1009,13 @@ class FGMembersite
             $this->HandleError("Database login failed!");
             return false;
         }
-        $query = "SELECT courses.coursename, courses.hourrate FROM  courses where courses.ClientID=" . $userid . ";"; //You don't need a ; like you do in SQL
+        $query = "SELECT courses.coursename, courses.hourrate, courses.uniqueid FROM  courses where courses.ClientID=" . $userid . ";"; //You don't need a ; like you do in SQL
         $result = mysql_query($query);
 
         echo "<table id='fg_membersite_table'>"; // start a table tag in the HTML
             echo "<tr><td></td><td><b>Course Name</b></td><td><b>Hour Rate</b></td></tr>";
         while($row = mysql_fetch_array($result)){   //Creates a loop to loop through results
-        echo "<tr><td><input type=\"radio\" name=\"coursename\" value=". $row['coursename'] ."></td><td>" . $row['coursename'] . "</td><td>" . $row['hourrate'] . "$ </td></tr>";  //$row['index'] the index here is a field name
+        echo "<tr><td><input type=\"radio\" name=\"uniqueid\" value=". $row['uniqueid'] ."></td><td>" . $row['coursename'] . "</td><td>" . $row['hourrate'] . "$ </td></tr>";  //$row['index'] the index here is a field name
         }
 
         echo "</table>"; //Close the table in HTML

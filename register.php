@@ -1,7 +1,7 @@
 <?PHP
 require_once("./include/membersite_config.php");
 
-if(isset($_POST['submitted']))
+if(isset($_POST['registersubmitted']))
 {
    if($fgmembersite->RegisterUser())
    {
@@ -52,11 +52,11 @@ if(isset($_POST['submitted']))
 <div class='container' style='height:80px;'>
     <label for='usertype' >Are you a Student, Tutor or Student and Tutor?*:</label><br/>
  
-    <select name='usertype' id='usertype'>
-  <option value="s">Student</option>
-  <option value="t">Tutor</option>
-  <option value="st">Student and Tutor</option>
-</select>
+    <select name='usertype' id='usertype'>  
+      <option value="s">Student</option>
+      <option value="t">Tutor</option>
+      <option value="st">Student and Tutor</option>
+    </select>
     
     <span id='register_usertype_errorloc' class='error'></span>
 </div>

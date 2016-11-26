@@ -165,7 +165,7 @@ Form Code End (see html-form-guide.com for more info.)
     <input type='text' name='username' id='username' value='<?php echo $fgmembersite->SafeDisplay('username') ?>' maxlength="50" />
     <span id='register_username_errorloc' class='error'></span>
 </div>
-<div class='container' style='height:80px;'>
+<div class='container' >
     <label for='usertype' >Are you a Student, Tutor or Student and Tutor?*:</label>
  
     <select name='usertype' id='usertype'>  
@@ -173,10 +173,9 @@ Form Code End (see html-form-guide.com for more info.)
       <option value="t">Tutor</option>
       <option value="st">Student and Tutor</option>
     </select>
-    </br>
     <span id='register_usertype_errorloc' class='error'></span>
 </div>
-<div class='container' style='height:80px;'>
+<div class='container'>
     </br>
     <label for='password' >Password*:</label>
     <div class='pwdwidgetdiv' id='thepwddiv' ></div>
