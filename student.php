@@ -6,6 +6,9 @@ if(!$fgmembersite->CheckLogin())
     $fgmembersite->RedirectToURL("index.php");
     exit;
 }
+
+
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
@@ -40,13 +43,31 @@ if(!$fgmembersite->CheckLogin())
    	
    </header> <!-- /header -->
     <section id="process">	
-            <div class="row">
-                <a class="button stroke" href='list_tutors.php'>Find a tutor and subject</a>
-            </div>
-    </section>
     <script src="scripts/jquery-1.11.3.min.js"></script>
     <script src="scripts/jquery-migrate-1.2.1.min.js"></script>
     <script src="scripts/plugins.js"></script>
     <script src="scripts/main.js"></script>
+    
+<center> Search for the course subject</center>
+            <div class="row">
+                <form action="" method="GET">
+        <input type="text" name="qrystring" />
+      <center>  <input type="submit" name="submit" value="Search" /></center>
+    </form>
+            </div>
+              <?PHP
+    if(isset($_GET['submit'])){
+$query=$_GET['qrystring'];
+$fgmembersite->SearchCourse($query);
+}
+?>
+
+<center>Or...</center>
+            <div class="row">
+              <center>  <a class="button stroke" href='list_tutors.php'>List all tutors and courses</a></center>
+            </div>
+    </section>
+
+  
 </body>
 </html>
