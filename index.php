@@ -178,11 +178,11 @@ Form Code End (see html-form-guide.com for more info.)
 <div class='container'>
     </br>
     <label for='password' >Password*:</label>
-    <div class='pwdwidgetdiv' id='thepwddiv' ></div>
+    <center><div class='pwdwidgetdiv' id='thepwddiv' ></div>
     <noscript>
     <input type='password' name='password' id='password' maxlength="50" />
     </noscript>    
-    <div id='register_password_errorloc' class='error' style='clear:both'></div>
+    <div id='register_password_errorloc' class='error' style='clear:both'></div></center>
 </div>
 
 <div class='container'>
