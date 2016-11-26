@@ -3,7 +3,7 @@ require_once("./include/membersite_config.php");
 
 if(!$fgmembersite->CheckLogin())
 {
-    $fgmembersite->RedirectToURL("login.php");
+    $fgmembersite->RedirectToURL("index.php");
     exit;
 }
 if(isset($_POST['submitted']))
@@ -25,6 +25,7 @@ if(isset($_POST['deletesubmitted']))
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 <head>
         <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <title>Tutor Page</title>
         <link rel="STYLESHEET" type="text/css" href="style/fg_membersite.css">
         <link rel="stylesheet" href="style/base.css">  
@@ -43,14 +44,13 @@ if(isset($_POST['deletesubmitted']))
    ================================================== -->
      <header>
 
-   	<div class="row" style="vertical-align: text-top;">
+   	<div class="row">
    	    <h5>Tutor Dashboard</h5>
 	   	<nav id="main-nav-wrap">
 				<ul class="main-navigation">
-					
 					<li class="highlight with-sep">Logged in as: <?= $fgmembersite->UserFullName() ?></li>
-					<li><a class="smoothscroll"  href="login-home.php" title="">Home</a></li>
-					<li><a class="smoothscroll"  href="reset-pwd-req.php" title="">Reset Password</a></li>
+					<li class=""><a   href="login-home.php" title="">Home</a></li>
+					<li class=""><a   href="reset-pwd-req.php" title="">Reset Password</a></li>
 					<li class="highlight with-sep"><a href="logout.php" title="">Log Out</a></li>					
 				</ul>
 			</nav>
@@ -78,13 +78,13 @@ if(isset($_POST['deletesubmitted']))
 
                             <div><span class='error'><?php echo $fgmembersite->GetErrorMessage(); ?></span></div>
                             <div class='container'>
-                                <label for='name' >Course Name*: </label><br/>
-                                <input type='text' name='coursename' id='coursename' value='<?php echo $fgmembersite->SafeDisplay('Course Name') ?>' maxlength="50" /><br/>
+                                <label for='name' >Course Name*: </label>
+                                <input type='text' name='coursename' id='coursename' value='<?php echo $fgmembersite->SafeDisplay('Course Name') ?>' maxlength="50" />
                                 <span id='register_name_errorloc' class='error'></span>
                             </div>
                             <div class='container'>
-                                <label for='hourrate' >Hour Rate*:</label><br/>
-                                <input type='number' name='hourrate' id='hourrate' value='<?php echo $fgmembersite->SafeDisplay('Hour Rate') ?>' maxlength="10" /><br/>
+                                <label for='hourrate' >Hour Rate*:</label>
+                                <input type='number' name='hourrate' id='hourrate' value='<?php echo $fgmembersite->SafeDisplay('Hour Rate') ?>' maxlength="10" />
                             </div>
                             <div class='container'>
                                 <input type='submit' name='Submit' value='Submit' />
