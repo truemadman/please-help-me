@@ -503,6 +503,7 @@ select {
 	padding: 1.5rem 2rem;
 	border: 0;
 	outline: none;
+	margin: auto;
 	vertical-align: middle;
 	color: #737373;
 	font-family: "merriweather-regular", sans-serif;
@@ -587,6 +588,7 @@ label span, legend span {
 }
 input[type="checkbox"], input[type="radio"] {
 	display: inline;
+	vertical-align: central;
 }
 
 /**

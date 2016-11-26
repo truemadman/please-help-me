@@ -71,7 +71,7 @@ class FGMembersite
     //-------Main Operations ----------------------
     function RegisterUser()
     {
-        if(!isset($_POST['submitted']))
+        if(!isset($_POST['registersubmitted']))
         {
            return false;
         }
