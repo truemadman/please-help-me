@@ -14,7 +14,7 @@ if(!$fgmembersite->CheckLogin())
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 <head>
       <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
-      <title>Student Page</title>
+      <title>Student Tutor</title>
       <link rel="STYLESHEET" type="text/css" href="style/fg_membersite.css">
         <link rel="stylesheet" href="style/base.css">  
         <link rel="stylesheet" href="style/main.css">
@@ -28,7 +28,7 @@ if(!$fgmembersite->CheckLogin())
      <header>
 
    	<div class="row">
-   	    <h5>Student Dashboard</h5>
+   	    <h5>You are a Student and a Tutor, aren't you special?</h5>
 	   	<nav id="main-nav-wrap">
 				<ul class="main-navigation">
 					<li class="highlight with-sep">Logged in as: <?= $fgmembersite->UserFullName() ?></li>
@@ -48,32 +48,12 @@ if(!$fgmembersite->CheckLogin())
     <script src="scripts/plugins.js"></script>
     <script src="scripts/main.js"></script>
     
-<center> Search for the course subject</center>
-            <div class="row">
-                <form action="" method="GET">
-        <input type="text" name="qrystring" />
-      <center>  <input type="submit" name="submit" value="Search" /></center>
-    </form>
-            </div>
-              <?PHP
-    if(isset($_GET['submit'])){
-$query=$_GET['qrystring'];
-$fgmembersite->SearchCourse($query);
-}
-?>
-
-<center>Or...</center>
-            <div class="row">
-              <center>  <a class="button stroke" href='list_tutors.php'>List all tutors and courses</a></center>
-            </div>
-            
-              <?PHP      
-        if($fgmembersite->UserType()=='st')
-{
-    echo "<br><br><a href='student_tutor.php'>Go back to the Student Tutor Page</a>";
-}
-?>
-    </section>
+I want to... 
+<br>
+<br>
+<a href='student.php'>Get Help (Student Mode)</a><br>
+<br>
+<a href='tutor.php'>Offer Help (Tutor Mode)</a>
 
   
 </body>

@@ -114,7 +114,16 @@ if(isset($_POST['deletesubmitted']))
                     </fieldset>
                 </form>
             </div>
+  <?PHP      
+        if($fgmembersite->UserType()=='st')
+{
+    echo "<br><br><a href='student_tutor.php'>Go back to the Student Tutor Page</a>";
+}
+?>
         </section>
+        
+        
+
     <script src="scripts/jquery-1.11.3.min.js"></script>
     <script src="scripts/jquery-migrate-1.2.1.min.js"></script>
     <script src="scripts/plugins.js"></script>
