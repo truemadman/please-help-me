@@ -72,7 +72,7 @@ class PHPMailer {
    * Sets the From email address for the message.
    * @var string
    */
-  var $From              = 'pleasehelpmeapp@gmail.com';
+  var $From              = 'tadeucrz@yahoo.com';
 
   /**
    * Sets the From name of the message.
@@ -174,13 +174,13 @@ class PHPMailer {
    * Hosts will be tried in order.
    * @var string
    */
-  var $Host        = 'smtp.gmail.com';
+  var $Host        = 'smtp.sendgrid.net';
 
   /**
    * Sets the default SMTP server port.
    * @var int
    */
-  var $Port        = 425;
+  var $Port        = 587;
 
   /**
    * Sets the SMTP HELO of the message (Default is $Hostname).
@@ -205,13 +205,13 @@ class PHPMailer {
    * Sets SMTP username.
    * @var string
    */
-  var $Username     = 'pleasehelpmeapp@gmail.com';
+  var $Username     = 'apikey';
 
   /**
    * Sets SMTP password.
    * @var string
    */
-  var $Password     = 'please-help-me-app';
+  var $Password     = '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';
 
   /**
    * Sets the SMTP server timeout in seconds. This function will not
