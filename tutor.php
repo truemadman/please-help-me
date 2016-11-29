@@ -49,8 +49,8 @@ if(isset($_POST['deletesubmitted']))
 	   	<nav id="main-nav-wrap">
 				<ul class="main-navigation">
 					<li class="highlight with-sep">Logged in as: <?= $fgmembersite->UserFullName() ?></li>
-					<li class=""><a   href="login-home.php" title="">Home</a></li>
-					<li class=""><a   href="reset-pwd-req.php" title="">Reset Password</a></li>
+					<li class=""><a href="login-home.php" title="">Home</a></li>
+					<li class=""><a href="reset-pwd-req.php" title="">Reset Password</a></li>
 					<li class="highlight with-sep"><a href="logout.php" title="">Log Out</a></li>					
 				</ul>
 			</nav>
@@ -64,8 +64,6 @@ if(isset($_POST['deletesubmitted']))
    ================================================== -->
 
         <section id="process">	
-            <div class="row">
-            </div>
             <div class="row">
                 <div id='fg_membersite'>
                     <form id='insertcourse' action='<?php echo $fgmembersite->GetSelfScript(); ?>' method='post' accept-charset='UTF-8'>

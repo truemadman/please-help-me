@@ -26,9 +26,9 @@ $fgmembersite->LogOut();
 
 	   	<nav id="main-nav-wrap">
 				<ul class="main-navigation">
-					<li class="current"><a class="smoothscroll"  href="#intro" title="">Home</a></li>
-					<li><a class="smoothscroll"  href='index.php#process' title="">Log In</a></li>
-					<li class="highlight with-sep"><a class="smoothscroll" href='index.php#pricing' title="">Sign Up</a></li>					
+					<li class="current"><a  href="index.php" title="">Home</a></li>
+					<li><a  href='index.php#process' title="">Log In</a></li>
+					<li class="highlight with-sep"><a href='index.php#pricing' title="">Sign Up</a></li>					
 				</ul> 
 			</nav>
 
