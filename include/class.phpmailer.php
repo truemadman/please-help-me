@@ -31,7 +31,6 @@
  * @author Andy Prevost
  * @copyright 2004 - 2009 Andy Prevost
  */
-require 'vendor/autoload.php';
 
 class PHPMailer {
 
@@ -135,7 +134,7 @@ class PHPMailer {
    * is in a different directory than the PHP include path.
    * @var string
    */
-  var $PluginDir         = '/include';
+  var $PluginDir         = '';
 
   /**
    * Holds PHPMailer version.
