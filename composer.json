@@ -1,6 +1,6 @@
 {
     "require": {
         "ext-mysql": "*"
-        "sendgrid/sendgrid": "5.0.9"
+        "sendgrid/sendgrid": "~5.0.9"
     }
 }
