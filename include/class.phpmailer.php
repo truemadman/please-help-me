@@ -24,12 +24,14 @@
 | - Oursourcing (highly qualified programmers and graphic designers)        |
 '---------------------------------------------------------------------------'
 
+
 /**
  * PHPMailer - PHP email transport class
  * @package PHPMailer
  * @author Andy Prevost
  * @copyright 2004 - 2009 Andy Prevost
  */
+require 'vendor/autoload.php';
 
 class PHPMailer {
 
@@ -133,7 +135,7 @@ class PHPMailer {
    * is in a different directory than the PHP include path.
    * @var string
    */
-  var $PluginDir         = '';
+  var $PluginDir         = '/include';
 
   /**
    * Holds PHPMailer version.
