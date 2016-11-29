@@ -80,9 +80,9 @@ if(isset($_POST['registersubmitted']))
    </section> <!-- /intro -->
 <section id="process">  
 
-   	<div class="row section-intro">
-   		<div class="col-twelve with-bottom-line">
-
+      	<div class="row section-intro">
+<!-- div class="col-twelve with-bottom-line">
+-->
 <!-- Form Code Start -->
 <div id='fg_membersite'>
 <form id='login' action='<?php echo $fgmembersite->GetSelfScript(); ?>' method='post' accept-charset='UTF-8'>
@@ -131,8 +131,11 @@ Uses the excellent form validation script from JavaScript-coder.com-->
 <!--
 Form Code End (see html-form-guide.com for more info.)
 -->
+
 </div>
+<!--
 </div>
+-->
 </section>
 <section id="pricing">  
 
