@@ -212,7 +212,7 @@ class PHPMailer {
    * Sets SMTP password.
    * @var string
    */
-  var $Password     = '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';
+  var $Password     = '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';
 
   /**
    * Sets the SMTP server timeout in seconds. This function will not

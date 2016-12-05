@@ -754,6 +754,10 @@ class FGMembersite
 
         if(!$mailer->Send())
         {
+            print("mailer error");
+            error_log("mailer error");
+            error_log($mailer->ErrorInfo);
+            print($mailer->ErrorInfo);
             $this->HandleError("Failed sending registration confirmation email.");
             return false;
         }
