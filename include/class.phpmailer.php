@@ -31,7 +31,6 @@
  * @author Andy Prevost
  * @copyright 2004 - 2009 Andy Prevost
  */
-require 'vendor/autoload.php';
 
 class PHPMailer {
 
@@ -122,7 +121,7 @@ class PHPMailer {
    * Method to send mail: ("mail", "sendmail", or "smtp").
    * @var string
    */
-  var $Mailer            = 'mail';
+  var $Mailer            = 'smtp';
 
   /**
    * Sets the path of the sendmail program.
@@ -135,7 +134,7 @@ class PHPMailer {
    * is in a different directory than the PHP include path.
    * @var string
    */
-  var $PluginDir         = '/include';
+  var $PluginDir         = '';
 
   /**
    * Holds PHPMailer version.
