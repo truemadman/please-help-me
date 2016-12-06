@@ -744,8 +744,8 @@ class FGMembersite
         $confirm_url = $this->GetAbsoluteURLFolder().'/confirmreg.php?code='.$confirmcode;
         
         $mailer->Body ="Hello ".$formvars['name']."\r\n\r\n".
-        "Thanks for your registration with ".$this->sitename."\r\n".
-        "Please click the link below to confirm your registration.\r\n".
+        "Thanks for your registration with ".$this->sitename.".\r\n".
+        "\r\nClick the link below to confirm your registration.\r\n".
         "$confirm_url\r\n".
         "\r\n".
         "Regards,\r\n".
