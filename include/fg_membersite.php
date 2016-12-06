@@ -40,7 +40,7 @@ class FGMembersite
     //-----Initialization -------
     function FGMembersite()
     {
-        $this->sitename = 'YourWebsiteName.com';
+        $this->sitename = 'Please Help Me';
         $this->rand_key = '0iQx5oBk66oVZep';
     }
     
