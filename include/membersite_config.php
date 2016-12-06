@@ -4,10 +4,10 @@ require_once("./include/fg_membersite.php");
 $fgmembersite = new FGMembersite();
 
 //Provide your site name here
-$fgmembersite->SetWebsiteName('user11.com');
+$fgmembersite->SetWebsiteName('Please Help Me');
 
 //Provide the email address where you want to get notifications
-$fgmembersite->SetAdminEmail('user11@user11.com');
+$fgmembersite->SetAdminEmail('tiago.cruz@yale.edu');
 
 //Provide your database login details here:
 //hostname, user name, password, database name and table name

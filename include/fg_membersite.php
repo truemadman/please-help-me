@@ -749,7 +749,7 @@ class FGMembersite
         "$confirm_url\r\n".
         "\r\n".
         "Regards,\r\n".
-        "Webmaster\r\n".
+        "Tiago and Marco from Please Help Me!\r\n".
         $this->sitename;
 
         if(!$mailer->Send())
